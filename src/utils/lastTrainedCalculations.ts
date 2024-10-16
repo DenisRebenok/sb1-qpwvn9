@@ -9,11 +9,11 @@ export function getLastTrainedDates(workoutData: WorkoutData[]): { [key: string]
     if (set.set_type === 'dropset' || set.set_type === 'warmup') return;
 
     const setDate = new Date(set.start_time);
-    const muscleGroups = getMuscleGroups(set.exercise_title);
+    const muscleInvolvements = getMuscleGroups(set.exercise_title);
 
-    muscleGroups.forEach((muscleGroup) => {
-      if (!lastTrainedDates[muscleGroup] || setDate > lastTrainedDates[muscleGroup]) {
-        lastTrainedDates[muscleGroup] = setDate;
+    muscleInvolvements.forEach((involvement) => {
+      if (!lastTrainedDates[involvement.name] || setDate > lastTrainedDates[involvement.name]) {
+        lastTrainedDates[involvement.name] = setDate;
       }
     });
   });

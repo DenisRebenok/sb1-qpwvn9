@@ -12,22 +12,22 @@ export const DataAnalysis: React.FC<DataAnalysisProps> = ({ workoutData }) => {
   const [activeTab, setActiveTab] = useState<'volume' | 'strength' | 'lastTrained'>('volume');
 
   return (
-    <div className="bg-white p-6 rounded-lg shadow-md">
-      <div className="flex mb-4">
+    <div className="card">
+      <div className="flex mb-4 space-x-2">
         <button
-          className={`mr-2 px-4 py-2 rounded ${activeTab === 'volume' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
+          className={`btn ${activeTab === 'volume' ? 'bg-primary' : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-200'}`}
           onClick={() => setActiveTab('volume')}
         >
           Volume Analysis
         </button>
         <button
-          className={`mr-2 px-4 py-2 rounded ${activeTab === 'strength' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
+          className={`btn ${activeTab === 'strength' ? 'bg-primary' : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-200'}`}
           onClick={() => setActiveTab('strength')}
         >
           Strength Analysis
         </button>
         <button
-          className={`px-4 py-2 rounded ${activeTab === 'lastTrained' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
+          className={`btn ${activeTab === 'lastTrained' ? 'bg-primary' : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-200'}`}
           onClick={() => setActiveTab('lastTrained')}
         >
           Last Trained

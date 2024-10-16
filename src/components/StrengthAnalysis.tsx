@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { WorkoutData } from '../types';
-import { calculate1RM, calculateRM, getBestSet } from '../utils/strengthCalculations';
+import { ExerciseHistory } from './ExerciseHistory';
+import { ExerciseCharts } from './ExerciseCharts';
+import { ExerciseRecords } from './ExerciseRecords';
 
 interface StrengthAnalysisProps {
   workoutData: WorkoutData[];
@@ -8,30 +10,25 @@ interface StrengthAnalysisProps {
 
 export const StrengthAnalysis: React.FC<StrengthAnalysisProps> = ({ workoutData }) => {
   const [selectedExercise, setSelectedExercise] = useState<string>('');
-  const [targetReps, setTargetReps] = useState<number>(1);
+  const [activeTab, setActiveTab] = useState<'history' | 'charts' | 'records'>('history');
 
-  const exerciseCounts = workoutData.reduce((acc: { [key: string]: number }, workout) => {
-    acc[workout.exercise_title] = (acc[workout.exercise_title] || 0) + 1;
-    return acc;
-  }, {});
+  const exerciseCounts = useMemo(() => {
+    return workoutData.reduce((acc: { [key: string]: number }, workout) => {
+      if (workout.exercise_title) {
+        acc[workout.exercise_title] = (acc[workout.exercise_title] || 0) + 1;
+      }
+      return acc;
+    }, {});
+  }, [workoutData]);
 
   const handleExerciseChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedExercise(event.target.value);
   };
 
-  const handleTargetRepsChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setTargetReps(parseInt(event.target.value, 10));
-  };
-
-  const bestSet = selectedExercise ? getBestSet(workoutData, selectedExercise) : null;
-  const estimatedRM = bestSet
-    ? calculateRM(selectedExercise, bestSet.weight_kg, bestSet.reps, targetReps)
-    : null;
-
   return (
     <div>
       <h3 className="text-xl font-semibold mb-4">Strength Analysis</h3>
-      <div className="flex flex-col md:flex-row gap-4 mb-4">
+      <div className="mb-4">
         <select
           className="p-2 border rounded"
           value={selectedExercise}
@@ -44,25 +41,32 @@ export const StrengthAnalysis: React.FC<StrengthAnalysisProps> = ({ workoutData 
             </option>
           ))}
         </select>
-        <input
-          type="number"
-          className="p-2 border rounded"
-          value={targetReps}
-          onChange={handleTargetRepsChange}
-          min="1"
-          max="20"
-        />
-        <button
-          className="bg-blue-500 text-white p-2 rounded"
-          onClick={() => setTargetReps(1)}
-        >
-          Calculate 1RM
-        </button>
       </div>
-      {bestSet && estimatedRM && (
-        <div className="mt-4">
-          <p>Best Set: {bestSet.weight_kg}kg x {bestSet.reps} reps</p>
-          <p>Estimated {targetReps}RM: {estimatedRM.toFixed(2)}kg</p>
+      {selectedExercise && (
+        <div>
+          <div className="flex mb-4">
+            <button
+              className={`mr-2 px-4 py-2 rounded ${activeTab === 'history' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
+              onClick={() => setActiveTab('history')}
+            >
+              History
+            </button>
+            <button
+              className={`mr-2 px-4 py-2 rounded ${activeTab === 'charts' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
+              onClick={() => setActiveTab('charts')}
+            >
+              Charts
+            </button>
+            <button
+              className={`px-4 py-2 rounded ${activeTab === 'records' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
+              onClick={() => setActiveTab('records')}
+            >
+              Records
+            </button>
+          </div>
+          {activeTab === 'history' && <ExerciseHistory workoutData={workoutData} exerciseName={selectedExercise} />}
+          {activeTab === 'charts' && <ExerciseCharts workoutData={workoutData} exerciseName={selectedExercise} />}
+          {activeTab === 'records' && <ExerciseRecords workoutData={workoutData} exerciseName={selectedExercise} />}
         </div>
       )}
     </div>

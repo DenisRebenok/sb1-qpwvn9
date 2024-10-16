@@ -1,22 +1,25 @@
 import config from '../config.json';
 
-interface ExerciseGroup {
-  Exercises: string[];
-  Groups: string[];
+interface MuscleInvolvement {
+  name: string;
+  fraction: number;
 }
 
-const exerciseToMuscleGroups: { [key: string]: string[] } = {};
+interface Exercise {
+  name: string;
+  muscles: MuscleInvolvement[];
+}
 
-config["Muscle Groups"].forEach((group: ExerciseGroup) => {
-  group.Exercises.forEach(exercise => {
-    exerciseToMuscleGroups[exercise] = group.Groups;
-  });
+const exerciseToMuscleGroups: { [key: string]: MuscleInvolvement[] } = {};
+
+config.Exercises.forEach((exercise: Exercise) => {
+  exerciseToMuscleGroups[exercise.name] = exercise.muscles;
 });
 
-export function getMuscleGroups(exerciseName: string): string[] {
-  return exerciseToMuscleGroups[exerciseName] || ['Uncategorized'];
+export function getMuscleGroups(exerciseName: string): MuscleInvolvement[] {
+  return exerciseToMuscleGroups[exerciseName] || [];
 }
 
 export function getAllMuscleGroups(): string[] {
-  return Array.from(new Set(Object.values(exerciseToMuscleGroups).flat()));
+  return Array.from(new Set(Object.values(exerciseToMuscleGroups).flatMap(muscles => muscles.map(m => m.name))));
 }

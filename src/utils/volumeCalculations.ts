@@ -1,7 +1,7 @@
 import { WorkoutData } from '../types';
 import { getMuscleGroups } from './exerciseMapping';
 
-export function getVolumeBySets(workoutData: WorkoutData[], dateRanges: number[]): { [key: string]: { [key: number]: number } } {
+export function getFractionalVolume(workoutData: WorkoutData[], dateRanges: number[]): { [key: string]: { [key: number]: number } } {
   const now = new Date();
   const volumeData: { [key: string]: { [key: number]: number } } = {};
 
@@ -11,15 +11,15 @@ export function getVolumeBySets(workoutData: WorkoutData[], dateRanges: number[]
     const setDate = new Date(set.start_time);
     const daysSinceSet = Math.floor((now.getTime() - setDate.getTime()) / (1000 * 3600 * 24));
 
-    const muscleGroups = getMuscleGroups(set.exercise_title);
-    muscleGroups.forEach((muscleGroup) => {
-      if (!volumeData[muscleGroup]) {
-        volumeData[muscleGroup] = {};
+    const muscleInvolvements = getMuscleGroups(set.exercise_title);
+    muscleInvolvements.forEach((involvement) => {
+      if (!volumeData[involvement.name]) {
+        volumeData[involvement.name] = {};
       }
 
       dateRanges.forEach((range) => {
         if (daysSinceSet <= range) {
-          volumeData[muscleGroup][range] = (volumeData[muscleGroup][range] || 0) + 1;
+          volumeData[involvement.name][range] = (volumeData[involvement.name][range] || 0) + involvement.fraction;
         }
       });
     });

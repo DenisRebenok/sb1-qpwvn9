@@ -1,138 +1,96 @@
 {
-  "Muscle Groups": [
+  "Exercises": [
     {
-      "Exercises": [
-        "Push Up (Weighted)"
-      ],
-      "Groups": [
-        "Pecs"
+      "name": "Push Up (Weighted)",
+      "muscles": [
+        { "name": "Pecs", "fraction": 0.7 },
+        { "name": "Front Delts", "fraction": 0.3 },
+        { "name": "Triceps", "fraction": 0.5 }
       ]
     },
     {
-      "Exercises": [
-        "Chin Up (Weighted)"
-      ],
-      "Groups": [
-        "Back"
+      "name": "Chin Up (Weighted)",
+      "muscles": [
+        { "name": "Back", "fraction": 0.8 },
+        { "name": "Biceps", "fraction": 0.5 }
       ]
     },
     {
-      "Exercises": [
-        "Single Arm Tricep Extension (Dumbbell)"
-      ],
-      "Groups": [
-        "Triceps"
+      "name": "Single Arm Tricep Extension (Dumbbell)",
+      "muscles": [{ "name": "Triceps", "fraction": 1.0 }]
+    },
+    {
+      "name": "Triceps Dip (Weighted)",
+      "muscles": [
+        { "name": "Triceps", "fraction": 0.8 },
+        { "name": "Front Delts", "fraction": 0.3 },
+        { "name": "Pecs", "fraction": 0.4 }
       ]
     },
     {
-      "Exercises": [
-        "Triceps Dip (Weighted)"
-      ],
-      "Groups": [
-        "Front Delts",
-        "Triceps"
+      "name": "Bicep Curl (Dumbbell)",
+      "muscles": [{ "name": "Biceps", "fraction": 1.0 }]
+    },
+    {
+      "name": "Bulgarian Split Squat",
+      "muscles": [
+        { "name": "Quadriceps", "fraction": 0.7 },
+        { "name": "Glutes", "fraction": 0.6 },
+        { "name": "Hamstrings", "fraction": 0.4 }
       ]
     },
     {
-      "Exercises": [
-        "Bicep Curl (Dumbbell)"
-      ],
-      "Groups": [
-        "Biceps"
+      "name": "Good Morning (Barbell)",
+      "muscles": [
+        { "name": "Lower Back", "fraction": 0.7 },
+        { "name": "Glutes", "fraction": 0.8 },
+        { "name": "Hamstrings", "fraction": 1.0 }
       ]
     },
     {
-      "Exercises": [
-        "Bulgarian Split Squat"
-      ],
-      "Groups": [
-        "Quadriceps",
-        "Glutes",
-        "Hamstrings"
+      "name": "Seated Good Morning",
+      "muscles": [
+        { "name": "Lower Back", "fraction": 0.8 },
+        { "name": "Glutes", "fraction": 0.6 }
       ]
     },
     {
-      "Exercises": [
-        "Good Morning (Barbell)"
-      ],
-      "Groups": [
-        "Lower Back",
-        "Glutes",
-        "Hamstrings"
+      "name": "Lateral Raise (Dumbbell)",
+      "muscles": [{ "name": "Side Delts", "fraction": 1.0 }]
+    },
+    {
+      "name": "Dumbbell Row",
+      "muscles": [
+        { "name": "Back", "fraction": 1.0 },
+        { "name": "Biceps", "fraction": 0.3 }
       ]
     },
     {
-      "Exercises": [
-        "Seated Good Morning"
-      ],
-      "Groups": [
-        "Lower Back",
-        "Glutes"
+      "name": "Lying Leg Raise",
+      "muscles": [{ "name": "ABS", "fraction": 1.0 }]
+    },
+    {
+      "name": "Bicycle Crunch",
+      "muscles": [{ "name": "ABS", "fraction": 1.0 }]
+    },
+    {
+      "name": "Plank",
+      "muscles": [
+        { "name": "ABS", "fraction": 1.0 },
+        { "name": "Lower Back", "fraction": 0.3 }
       ]
     },
     {
-      "Exercises": [
-        "Lateral Raise (Dumbbell)"
-      ],
-      "Groups": [
-        "Side Delts"
-      ]
+      "name": "Hanging Leg Raise",
+      "muscles": [{ "name": "ABS", "fraction": 1.0 }]
     },
     {
-      "Exercises": [
-        "Dumbbell Row"
-      ],
-      "Groups": [
-        "Back"
-      ]
+      "name": "Decline Crunch",
+      "muscles": [{ "name": "ABS", "fraction": 1.0 }]
     },
     {
-      "Exercises": [
-        "Lying Leg Raise"
-      ],
-      "Groups": [
-        "ABS"
-      ]
-    },
-    {
-      "Exercises": [
-        "Bicycle Crunch"
-      ],
-      "Groups": [
-        "ABS"
-      ]
-    },
-    {
-      "Exercises": [
-        "Plank"
-      ],
-      "Groups": [
-        "ABS"
-      ]
-    },
-    {
-      "Exercises": [
-        "Hanging Leg Raise"
-      ],
-      "Groups": [
-        "ABS"
-      ]
-    },
-    {
-      "Exercises": [
-        "Decline Crunch"
-      ],
-      "Groups": [
-        "ABS"
-      ]
-    },
-    {
-      "Exercises": [
-        "Standing Calf Raise (Barbell)"
-      ],
-      "Groups": [
-        "Calves"
-      ]
+      "name": "Standing Calf Raise (Barbell)",
+      "muscles": [{ "name": "Calves", "fraction": 1.0 }]
     }
   ]
 }
